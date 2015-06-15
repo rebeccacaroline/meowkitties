@@ -7,3 +7,70 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 # require('../CampaignFin16/cands16.txt')
 
+def parse_candidates
+
+  f = 'CampaignFin16/cands16.txt'
+
+  my_file = File.open(f)
+
+  my_file.each_line do |line|
+    candidates = line.split("|,|")
+    cand_office = candidates[5]
+    district_id = candidates[5].slice(0..1)
+    cand_state = district_id unless district_id == "PR"
+    if cand_office == "PRES"
+      cand_office = "PRES"
+    elsif cand_office[2] == "S"
+      cand_office = "Senator"
+    else
+      cand_office = "Representative"
+    end
+    Politician.create(
+      {name: candidates[3],
+       cid: candidates[2],
+       party: candidates[4],
+       office: cand_office,
+       state: cand_state}
+      )
+  end
+  my_file.close
+end
+
+# def parse_individual_contributions
+#   f = 'CampaignFin16/indivs16.txt'
+#   my_file = Figitle.open(f, encoding: 'windows-1252')
+#   my_file.each_line do |line|
+#     line = line.gsub(/\s\s+/, " ")
+#     line = line.gsub(/\,\,+/, " ")
+#     line = line.split("|,|")
+#       line.each do |xyz|
+#         if xyz[0] == "|" && xyz[-1] == "|"
+#           xyz.slice!(0)
+#           xyz.slice!(-1)
+#         end
+#       end
+#       ap line
+#   end
+#   my_file.close
+# end
+
+# parse_individual_contributions
+
+def parse_pac_contributions
+  f = 'CampaignFin16/pacs16.txt'
+  my_file = File.open(f)
+  my_file.each_line do |line|
+   lines = line.split(",")
+   lines.each do |xyz|
+    if xyz[0] == "|" && xyz[-1] == "|"
+      xyz.slice!(0)
+      xyz.slice!(-1)
+    end
+    pac = lines[2]
+    candidate = lines[3]
+    amount = lines[4]
+    end
+  end
+end
+
+parse_pac_contributions
