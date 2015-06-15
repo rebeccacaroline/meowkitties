@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+# require('../CampaignFin16/cands16.txt')
+
+
+f = 'CampaignFin16/cands16.txt'
+
+my_file = File.open(f, "r")
+
+
+my_file.each_line { |line|
+  ap line.split("|,|")
+}
+my_file.close
