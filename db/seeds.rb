@@ -73,4 +73,68 @@ def parse_pac_contributions
   end
 end
 
-parse_pac_contributions
+# parse_pac_contributions
+
+######################
+def parse_pacs
+f = 'CampaignFin16/pacs16.txt'
+
+my_file = File.open(f, encoding: 'windows-1252')
+
+my_file.each_line { |line|
+  line = line.gsub(/\s\s+/, ' ')
+  line = line.gsub(/\,\,+/, ' ')
+  line = line.strip
+  line = line.split(',')
+        line.each do |xyz|
+          if xyz[0] == "|" && xyz[-1] == "|"
+            xyz.slice!(0)
+            xyz.slice!(-1)
+          end
+        end
+        ap line
+}
+my_file.close
+end
+######################
+
+def parse_individuals
+z = 'CampaignFin16/indivs16.txt'
+
+your_file = File.open(z, encoding: 'windows-1252')
+  your_file.each_line {|line|
+  line = line.gsub(/\s\s+/, ' ')
+  line = line.gsub(/\,\,+/, ' ')
+  line = line.gsub(/\|/, "")
+  line = line.strip
+  line = line.split(',')
+  line.each do |x|
+    if x[0] == " "
+        x[0] = ""
+      end
+   end
+      ap line
+
+  }
+your_file.close
+end
+
+def parse_committees
+  abc = 'CampaignFin16/cmtes16.txt'
+  your_file = File.open(abc, encoding: 'windows-1252')
+  your_file.each_line {|line|
+  line = line.gsub(/\s\s+/, ' ')
+  # line = line.gsub(/\,\,+/, ' ')
+  # line = line.gsub(/\|/, "")
+  line = line.strip
+  line = line.split(',')
+  line.each do |x| x.gsub!(/\|/, "")
+    x.strip!
+  end
+  ap line
+  }
+
+  your_file.close
+end
+
+parse_individuals
