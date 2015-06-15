@@ -102,7 +102,7 @@ def parse_individuals
 z = 'CampaignFin16/indivs16.txt'
 
 your_file = File.open(z, encoding: 'windows-1252')
-  your_file.each_line {|line|
+  your_file.each_line do |line|
   line = line.gsub(/\s\s+/, ' ')
   line = line.gsub(/\,\,+/, ' ')
   line = line.gsub(/\|/, "")
@@ -115,13 +115,14 @@ your_file = File.open(z, encoding: 'windows-1252')
    end
       ap line
 
-  }
+  end
 your_file.close
 end
 
 def parse_committees
-  abc = 'CampaignFin16/cmtes16.txt'
-  your_file = File.open(abc, encoding: 'windows-1252')
+  contribution_collection = Hash.new(0)
+  file = 'CampaignFin16/cmtes16.txt'
+  your_file = File.open(file, encoding: 'windows-1252')
   your_file.each_line {|line|
   line = line.gsub(/\s\s+/, ' ')
   # line = line.gsub(/\,\,+/, ' ')
@@ -131,10 +132,13 @@ def parse_committees
   line.each do |x| x.gsub!(/\|/, "")
     x.strip!
   end
-  ap line
-  }
+    contribution_collection[line[1]] = line[2]
+  # ap line
 
+  }
+  ap contribution_collection
   your_file.close
+
 end
 
-parse_individuals
+parse_committees
