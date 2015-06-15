@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(version: 20150615180808) do
   create_table "politicians", force: :cascade do |t|
     t.string   "name"
     t.string   "office"
+    t.string   "cid"
+    t.string   "party"
+    t.string   "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

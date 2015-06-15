@@ -14,6 +14,18 @@ my_file = File.open(f, "r")
 
 
 my_file.each_line { |line|
-  ap line.split("|,|")
+  candidates = line.split("|,|")
+
+  cand_office = candidates[5]
+  district_id = candidates[5].slice(0..1)
+  cand_state = district_id unless district_id == "PR"
+  if cand_office == "PRES"
+    cand_office = "PRES"
+  elsif cand_office[2] == "S"
+    cand_office = "Senator"
+  else
+    cand_office = "Representative"
+  end
+  Politician.create({name: candidates[3], cid: candidates[2], party: candidates[4], office: cand_office, state: cand_state})
 }
 my_file.close
