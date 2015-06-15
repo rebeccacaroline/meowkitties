@@ -24,14 +24,11 @@ ActiveRecord::Schema.define(version: 20150615180808) do
   end
 
   create_table "contributors", force: :cascade do |t|
-    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "politicians", force: :cascade do |t|
-    t.string   "name"
-    t.string   "office"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
