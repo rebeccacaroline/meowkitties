@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150615180808) do
   create_table "contributions", force: :cascade do |t|
     t.integer  "contributor_id"
     t.integer  "politician_id"
+    t.integer  "amount"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
