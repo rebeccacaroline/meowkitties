@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20150615180808) do
 
   create_table "contributors", force: :cascade do |t|
     t.string   "name"
+    t.string   "pac_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
