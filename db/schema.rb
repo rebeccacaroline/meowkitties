@@ -16,15 +16,17 @@ ActiveRecord::Schema.define(version: 20150615180808) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-   create_table "contributions", force: :cascade do |t|
+  create_table "contributions", force: :cascade do |t|
     t.integer  "contributor_id"
     t.integer  "politician_id"
+    t.integer  "amount"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
 
   create_table "contributors", force: :cascade do |t|
     t.string   "name"
+    t.string   "pac_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
