@@ -78,6 +78,27 @@ end
 #   # ap line
 
 
+# def parse_pac_contributions
+#   return_value = []
+#   f = 'CampaignFin16/pacs16.txt'
+#   my_file = File.open(f)
+#   my_file.each_line do |line|
+#    lines = line.split(",")
+#    lines.each do |xyz|
+#     if xyz[0] == "|" && xyz[-1] == "|"
+#       xyz.slice!(0)
+#       xyz.slice!(-1)
+#     end
+#   end
+#   @pac = lines[2]
+#   @candidate = lines[3]
+#   @amount = lines[4].to_i
+#   @name = @contribution_collection[@pac] if @contribution_collection[@pac]
+#   return_value << [@candidate, @amount, @name, @pac]
+#   end
+#    p return_value
+
+# end
 def parse_pac_contributions
   return_value = []
   f = 'CampaignFin16/pacs16.txt'
@@ -85,6 +106,7 @@ def parse_pac_contributions
   my_file.each_line do |line|
    lines = line.split(",")
    lines.each do |xyz|
+
     if xyz[0] == "|" && xyz[-1] == "|"
       xyz.slice!(0)
       xyz.slice!(-1)
@@ -97,7 +119,10 @@ def parse_pac_contributions
   return_value << [@candidate, @amount, @name, @pac]
   end
   return_value
+
 end
+
+# parse_pac_contributions
 
 
 
@@ -143,17 +168,10 @@ def parse_committees
 
 end
 
-parse_committees
-ap parse_pac_contributions
 
-def create_pac_contributors
-  parse_pac_contributions.each do |contributor|
-    Contributor.create({
-      name: @name,
-      pac_id: @pac
-      })
-  end
-end
+
+
+
 
 
 def create_pac_contributions
@@ -165,6 +183,39 @@ def create_pac_contributions
       })
   end
 end
+#a
+def create_pac_contributors
+  parsed = parse_pac_contributions
+  parsed.each do |x|
+    Contributor.create({
+      name: x[2],
+      pac_id: x[3]
+      })
+    end
+  # do |contributor|
+  #   Contributor.create({
+  #     name: @name,
+  #     pac_id: @pac
+  #     })
+  # end
+end
 
+parse_candidates
+parse_individuals
+parse_committees
+parse_pac_contributions
 create_pac_contributions
 create_pac_contributors
+
+
+# def create_pac_contributors
+#   parse_pac_contributions.each do |cont|
+#     ap cont
+#   end
+# end
+
+# create_pac_contributors
+# parse_candidates
+# create_indiv_contributors
+# create_pac_contributions
+# create_pac_contributors
