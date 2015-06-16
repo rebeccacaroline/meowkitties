@@ -27,6 +27,7 @@ def parse_candidates
     else
       cand_office = "Representative"
     end
+
     Politician.create(
       {name: candidates[3],
        cid: candidates[2],
@@ -121,7 +122,29 @@ def parse_committees
 
 end
 
-parse_committees
-parse_pac_contributions
+# parse_committees
+# parse_pac_contributions
+
+def parse_pac_other16
+  file = 'CampaignFin16/cmtes16.txt'
+  your_file = File.open(file, encoding: 'windows-1252')
+  your_file.each_line {|line|
+  line = line.gsub(/\s\s+/, ' ')
+  line = line.strip
+  line = line.split(',')
+  line.each do |x| x.gsub!(/\|/, "")
+    x.strip!
+   end
+  ap line
+}
+
+end
 
 def create_contributions
+end
+
+# parse_candidates
+
+# parse_committees
+
+parse_pac_other16
