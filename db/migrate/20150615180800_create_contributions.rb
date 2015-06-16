@@ -3,7 +3,7 @@ class CreateContributions < ActiveRecord::Migration
     create_table :contributions do |t|
       t.references :contributor
       t.references :politician
-
+      t.integer :amount
       t.timestamps null: false
     end
   end
