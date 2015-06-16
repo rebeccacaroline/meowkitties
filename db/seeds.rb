@@ -28,7 +28,55 @@ def parse_candidates
   end
 end
 
-parse_candidates
+def parse_individuals
+  return_value = []
+  z = 'CampaignFin16/indivs16.txt'
+
+  your_file = File.open(z, encoding: 'windows-1252')
+  your_file.each_line do |line|
+    line = line.gsub(/\s\s+/, ' ')
+    line = line.gsub(/\,\,+/, ' ')
+    line = line.gsub(/\|/, "")
+    line = line.strip
+    line = line.split(',')
+    # line.each do |x|
+    #   if x[0] == " "
+    #       x[0] = ""
+    #   end
+    # end
+    return_value << line
+  end
+end
+
+
+def create_indiv_contributors
+  parse_individuals.each do |contributor|
+    Contributor.create({
+      name: "#{contributor[3]} #{contributor[4]}",
+      pac_id: contributor[2]
+      })
+  end
+end
+
+
+
+
+# def parse_committees
+#   # @contribution_collection = Hash.new(0)
+#   file = 'CampaignFin16/cmtes16.txt'
+#   your_file = File.open(file, encoding: 'windows-1252')
+#   your_file.each_line {|line|
+#   line = line.gsub(/\s\s+/, ' ')
+#   # line = line.gsub(/\,\,+/, ' ')
+#   # line = line.gsub(/\|/, "")
+#   line = line.strip
+#   line = line.split(',')
+#   line.each do |x| x.gsub!(/\|/, "")
+#     x.strip!
+#   end
+#     @contribution_collection[line[1]] = line[2]
+#   # ap line
+
 
 def parse_pac_contributions
   return_value = []
@@ -50,6 +98,7 @@ def parse_pac_contributions
   end
   return_value
 end
+
 
 
 # def parse_individuals
