@@ -1,112 +1,101 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-# require('../CampaignFin16/cands16.txt')
+@contribution_collection = Hash.new
 
-# @contribution_collection = Hash.new
+def parse_candidates
 
-# def parse_candidates
+  f = 'CampaignFin16/cands16.txt'
 
-#   f = 'CampaignFin16/cands16.txt'
+  my_file = File.open(f)
 
-#   my_file = File.open(f)
-
-#   my_file.each_line do |line|
-#     candidates = line.split("|,|")
-#     cand_office = candidates[5]
-#     district_id = candidates[5].slice(0..1)
-#     cand_state = district_id unless district_id == "PR"
-#     if cand_office == "PRES"
-#       cand_office = "PRES"
-#     elsif cand_office[2] == "S"
-#       cand_office = "Senator"
-#     else
-#       cand_office = "Representative"
-#     end
-#     Politician.create(
-#       {name: candidates[3],
-#        cid: candidates[2],
-#        party: candidates[4],
-#        office: cand_office,
-#        state: cand_state}
-#       )
-#   end
-# end
-
-# def parse_pac_contributions
-#   return_value = []
-#   f = 'CampaignFin16/pacs16.txt'
-#   my_file = File.open(f)
-#   my_file.each_line do |line|
-#    lines = line.split(",")
-#    lines.each do |xyz|
-#     if xyz[0] == "|" && xyz[-1] == "|"
-#       xyz.slice!(0)
-#       xyz.slice!(-1)
-#     end
-#     @pac = lines[2]
-#     @candidate = lines[3]
-#     @amount = lines[4]
-#     @name = @contribution_collection[@pac] if @contribution_collection[@pac]
-#     return_value << [@candidate, @amout, @name, @pac]
-#     end
-#   end
-# end
-
-def parse_individuals
-  return_value = []
-  z = 'CampaignFin16/indivs16.txt'
-
-  your_file = File.open(z, encoding: 'windows-1252')
-  your_file.each_line do |line|
-    line = line.gsub(/\s\s+/, ' ')
-    line = line.gsub(/\,\,+/, ' ')
-    line = line.gsub(/\|/, "")
-    line = line.strip
-    line = line.split(',')
-    line.each do |x|
-      if x[0] == " "
-          x[0] = ""
-      end
+  my_file.each_line do |line|
+    candidates = line.split("|,|")
+    cand_office = candidates[5]
+    district_id = candidates[5].slice(0..1)
+    cand_state = district_id unless district_id == "PR"
+    if cand_office == "PRES"
+      cand_office = "PRES"
+    elsif cand_office[2] == "S"
+      cand_office = "Senator"
+    else
+      cand_office = "Representative"
     end
-    return_value << line
+    Politician.create(
+      {name: candidates[3],
+       cid: candidates[2],
+       party: candidates[4],
+       office: cand_office,
+       state: cand_state}
+      )
   end
-  ap return_value
 end
 
-parse_individuals
+parse_candidates
 
-# def parse_committees
-#   # @contribution_collection = Hash.new(0)
-#   file = 'CampaignFin16/cmtes16.txt'
-#   your_file = File.open(file, encoding: 'windows-1252')
-#   your_file.each_line {|line|
-#   line = line.gsub(/\s\s+/, ' ')
-#   # line = line.gsub(/\,\,+/, ' ')
-#   # line = line.gsub(/\|/, "")
-#   line = line.strip
-#   line = line.split(',')
-#   line.each do |x| x.gsub!(/\|/, "")
-#     x.strip!
+def parse_pac_contributions
+  return_value = []
+  f = 'CampaignFin16/pacs16.txt'
+  my_file = File.open(f)
+  my_file.each_line do |line|
+   lines = line.split(",")
+   lines.each do |xyz|
+    if xyz[0] == "|" && xyz[-1] == "|"
+      xyz.slice!(0)
+      xyz.slice!(-1)
+    end
+  end
+  @pac = lines[2]
+  @candidate = lines[3]
+  @amount = lines[4].to_i
+  @name = @contribution_collection[@pac] if @contribution_collection[@pac]
+  return_value << [@candidate, @amount, @name, @pac]
+  end
+  return_value
+end
+
+
+# def parse_individuals
+#   return_value = []
+#   z = 'CampaignFin16/indivs16.txt'
+
+#   your_file = File.open(z, encoding: 'windows-1252')
+#   your_file.each_line do |line|
+#     line = line.gsub(/\s\s+/, ' ')
+#     line = line.gsub(/\,\,+/, ' ')
+#     line = line.gsub(/\|/, "")
+#     line = line.strip
+#     line = line.split(',')
+#     line.each do |x|
+#       if x[0] == " "
+#           x[0] = ""
+#       end
+#     end
+#     return_value << line
 #   end
-#     @contribution_collection[line[1]] = line[2]
-#   # ap line
-
-#   }
-#   ap @contribution_collection
-
+#   ap return_value
 # end
 
-# parse_committees
-# parse_pac_contributions
+# parse_individuals
 
-# def create_contributions
+def parse_committees
+  file = 'CampaignFin16/cmtes16.txt'
+  your_file = File.open(file, encoding: 'windows-1252')
+  your_file.each_line {|line|
+  line = line.gsub(/\s\s+/, ' ')
+  # line = line.gsub(/\,\,+/, ' ')
+  # line = line.gsub(/\|/, "")
+  line = line.strip
+  line = line.split(',')
+  line.each do |x| x.gsub!(/\|/, "")
+    x.strip!
+  end
+    @contribution_collection[line[1]] = line[2]
 
-# end
+  }
+  @contribution_collection
+
+end
+
+parse_committees
+ap parse_pac_contributions
 
 def create_pac_contributors
   parse_pac_contributions.each do |contributor|
@@ -120,10 +109,13 @@ end
 
 def create_pac_contributions
   parse_pac_contributions.each do |contributor|
-    Contributions.create({
-      politician:
-      amount:
-      contributor: @pac
+    Contribution.create({
+      politician: Politician.where(cid: @candidate).first,
+      amount: @amount,
+      contributor: Contributor.where(pac_id: @pac).first
       })
   end
 end
+
+create_pac_contributions
+create_pac_contributors
