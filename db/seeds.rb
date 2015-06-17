@@ -112,11 +112,11 @@ def parse_pac_contributions
       xyz.slice!(-1)
     end
   end
-  @pac = lines[2]
-  @candidate = lines[3]
-  @amount = lines[4].to_i
-  @name = @contribution_collection[@pac] if @contribution_collection[@pac]
-  return_value << [@candidate, @amount, @name, @pac]
+  pac = lines[2]
+  candidate = lines[3]
+  amount = lines[4].to_i
+  name = @contribution_collection[pac] if @contribution_collection[pac]
+  return_value << [candidate, amount, name, pac]
   end
   return_value
 
@@ -175,11 +175,12 @@ end
 
 
 def create_pac_contributions
-  parse_pac_contributions.each do |contributor|
+  parsed = parse_pac_contributions
+  parsed.each do |contributor|
     Contribution.create({
-      politician: Politician.where(cid: @candidate).first,
-      amount: @amount,
-      contributor: Contributor.where(pac_id: @pac).first
+      politician: Politician.where(cid: contributor[0]).first,
+      amount: contributor[1],
+      contributor: Contributor.where(pac_id: contributor[3]).first
       })
   end
 end
@@ -204,8 +205,8 @@ parse_candidates
 parse_individuals
 parse_committees
 parse_pac_contributions
-create_pac_contributions
 create_pac_contributors
+create_pac_contributions
 
 
 # def create_pac_contributors
