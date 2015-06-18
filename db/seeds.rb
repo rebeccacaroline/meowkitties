@@ -29,7 +29,8 @@ def parse_candidates
 end
 
 def parse_individuals
-  return_value = []
+  # return_value = []
+  return_valuezz = Hash.new
   z = 'CampaignFin16/indivs16.txt'
 
   your_file = File.open(z, encoding: 'windows-1252')
@@ -44,7 +45,9 @@ def parse_individuals
     #       x[0] = ""
     #   end
     # end
-    return_value << line
+    # return_value << line
+    return_valuezz[:line] = line
+
   end
 end
 
@@ -57,6 +60,19 @@ def create_indiv_contributors
       })
   end
 end
+
+# def create_indiv_contributions
+#   parsed = parse_individuals
+#   parsed.each do |contributor|
+# # Contribution.create({
+# #   politician:
+# #   amount:
+# #   contributor:
+
+# #   })
+# end
+# end
+
 
 
 
@@ -170,10 +186,6 @@ end
 
 
 
-
-
-
-
 def create_pac_contributions
   parsed = parse_pac_contributions
   parsed.each do |contributor|
@@ -184,6 +196,8 @@ def create_pac_contributions
       })
   end
 end
+
+
 #a
 def create_pac_contributors
   parsed = parse_pac_contributions
@@ -201,12 +215,12 @@ def create_pac_contributors
   # end
 end
 
-parse_candidates
+# parse_candidates
 parse_individuals
-parse_committees
-parse_pac_contributions
-create_pac_contributors
-create_pac_contributions
+# parse_committees
+# parse_pac_contributions
+# create_pac_contributors
+# create_pac_contributions
 
 
 # def create_pac_contributors

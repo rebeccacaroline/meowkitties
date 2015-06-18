@@ -2,14 +2,19 @@ class ContributorsController < ApplicationController
   Dotenv.load
 
   def index
-    candidate = OpenSecrets::Candidate.new(ENV['OPENSECRET'])
-   render json: candidate.summary({:cid => 'N00007360'})["response"].to_json
-   # render json: candidate.summary({:cid =>'' })["response"].to_json
+    @contributor = Contributor.all
+    @contribution = Contribution.all
+    @politician = Politician.all
 
-   # member = OpenSecrets::Member.new(ENV['OPENSECRET'])
-   # render json: member.getLegislators
+    render json: @contribution.to_json
+  end
 
-    # render json: member.to_json
+  def new
+    @contributor = Contributor.all
+    render json: @contributor.to_json
+  end
+
+  def edit
   end
 
 end
