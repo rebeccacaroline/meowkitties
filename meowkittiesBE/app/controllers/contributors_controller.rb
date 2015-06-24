@@ -2,10 +2,7 @@ class ContributorsController < ApplicationController
 
 
   def index
-    # @contributor = Contributor.all
-    @contribution = Contribution.all
-    # @politician = Politician.all
-
+    @contribution = Contribution.all.limit(20)
     render json: @contribution.to_json
   end
 

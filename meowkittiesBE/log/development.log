@@ -1,0 +1,124 @@
+
+
+Started GET "/" for ::1 at 2015-06-24 12:02:29 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ContributorsController#index as */*
+  [1m[35mContribution Load (278.1ms)[0m  SELECT "contributions".* FROM "contributions"
+Completed 200 OK in 73680ms (Views: 0.1ms | ActiveRecord: 280.2ms)
+
+
+Started GET "/" for ::1 at 2015-06-24 12:03:44 -0700
+Processing by ContributorsController#index as */*
+  [1m[36mContribution Load (268.5ms)[0m  [1mSELECT "contributions".* FROM "contributions"[0m
+  [1m[36mContributor Load (0.8ms)[0m  [1mSELECT  "contributors".* FROM "contributors" LIMIT 20[0m
+Completed 200 OK in 40549ms (Views: 0.1ms | ActiveRecord: 268.5ms)
+
+
+Started GET "/" for ::1 at 2015-06-24 12:04:30 -0700
+Processing by ContributorsController#index as */*
+  [1m[35mContribution Load (0.3ms)[0m  SELECT  "contributions".* FROM "contributions" LIMIT 20
+Completed 200 OK in 11ms (Views: 0.1ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/" for ::1 at 2015-06-24 12:04:35 -0700
+Processing by ContributorsController#index as */*
+  [1m[36mContribution Load (0.2ms)[0m  [1mSELECT  "contributions".* FROM "contributions" LIMIT 20[0m
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2015-06-24 12:04:36 -0700
+Processing by ContributorsController#index as */*
+  [1m[35mContribution Load (0.2ms)[0m  SELECT  "contributions".* FROM "contributions" LIMIT 20
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2015-06-24 12:04:37 -0700
+Processing by ContributorsController#index as */*
+  [1m[36mContribution Load (0.2ms)[0m  [1mSELECT  "contributions".* FROM "contributions" LIMIT 20[0m
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2015-06-24 12:04:37 -0700
+Processing by ContributorsController#index as */*
+  [1m[35mContribution Load (0.2ms)[0m  SELECT  "contributions".* FROM "contributions" LIMIT 20
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2015-06-24 12:04:37 -0700
+Processing by ContributorsController#index as */*
+  [1m[36mContribution Load (0.2ms)[0m  [1mSELECT  "contributions".* FROM "contributions" LIMIT 20[0m
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2015-06-24 12:04:37 -0700
+Processing by ContributorsController#index as */*
+  [1m[35mContribution Load (0.2ms)[0m  SELECT  "contributions".* FROM "contributions" LIMIT 20
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2015-06-24 12:08:25 -0700
+Processing by ContributorsController#index as */*
+  [1m[36mContribution Load (0.2ms)[0m  [1mSELECT  "contributions".* FROM "contributions" LIMIT 20[0m
+Completed 200 OK in 10ms (Views: 0.1ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/" for ::1 at 2015-06-24 12:13:55 -0700
+Processing by ContributorsController#index as */*
+  [1m[35mContribution Load (0.2ms)[0m  SELECT  "contributions".* FROM "contributions" LIMIT 20
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2015-06-24 12:18:35 -0700
+Processing by ContributorsController#index as */*
+  [1m[36mContribution Load (0.3ms)[0m  [1mSELECT  "contributions".* FROM "contributions" LIMIT 20[0m
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2015-06-24 12:20:12 -0700
+Processing by ContributorsController#index as */*
+  [1m[35mContribution Load (0.2ms)[0m  SELECT  "contributions".* FROM "contributions" LIMIT 20
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2015-06-24 12:20:39 -0700
+Processing by ContributorsController#index as */*
+  [1m[36mContribution Load (0.2ms)[0m  [1mSELECT  "contributions".* FROM "contributions" LIMIT 20[0m
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2015-06-24 12:21:16 -0700
+Processing by ContributorsController#index as */*
+  [1m[35mContribution Load (0.2ms)[0m  SELECT  "contributions".* FROM "contributions" LIMIT 20
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2015-06-24 12:21:20 -0700
+Processing by ContributorsController#index as */*
+  [1m[36mContribution Load (0.2ms)[0m  [1mSELECT  "contributions".* FROM "contributions" LIMIT 20[0m
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2015-06-24 12:23:07 -0700
+Processing by ContributorsController#index as */*
+  [1m[35mContribution Load (0.2ms)[0m  SELECT  "contributions".* FROM "contributions" LIMIT 20
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/?beeee" for ::1 at 2015-06-24 12:27:38 -0700
+Processing by ContributorsController#index as */*
+  Parameters: {"beeee"=>nil}
+  [1m[36mContribution Load (0.2ms)[0m  [1mSELECT  "contributions".* FROM "contributions" LIMIT 20[0m
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/?searchterm=adfsdfsdafsfsdfsda" for ::1 at 2015-06-24 12:28:52 -0700
+Processing by ContributorsController#index as */*
+  Parameters: {"searchterm"=>"adfsdfsdafsfsdfsda"}
+  [1m[35mContribution Load (0.2ms)[0m  SELECT  "contributions".* FROM "contributions" LIMIT 20
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2015-06-24 13:55:15 -0700
+Processing by ContributorsController#index as HTML
+  [1m[36mContribution Load (0.4ms)[0m  [1mSELECT  "contributions".* FROM "contributions" LIMIT 20[0m
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.4ms)
